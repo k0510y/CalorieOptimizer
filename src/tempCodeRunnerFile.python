@@ -1,0 +1,46 @@
+class FoodItem:
+    def __init__(self, name, calories, nutrient_value):
+        self.name = name
+        self.calories = calories
+        self.nutrient_value = nutrient_value
+
+def compare_by_nutrient_value_per_calorie(item):
+    return item.nutrient_value / item.calories
+
+def calorie_optimizer(food_items, calorie_limit):
+    food_items.sort(key=compare_by_nutrient_value_per_calorie, reverse=True)
+
+    selected_items = []
+    total_calories = 0
+
+    for item in food_items:
+        if total_calories + item.calories <= calorie_limit:
+            selected_items.append(item)
+            total_calories += item.calories
+
+    return selected_items, total_calories
+
+# Define food items
+foods = [
+    FoodItem("Chicken Breast", 165, 25),
+    FoodItem("Brown Rice", 215, 5),
+    FoodItem("Broccoli", 55, 3)
+]
+
+# Set calorie limit
+calorie_limit = 500
+
+# Get optimized food selection
+selected_items, total_calories = calorie_optimizer(foods, calorie_limit)
+
+# Print results
+print("Selected Food Items:")
+for item in selected_items:
+    print(f"{item.name} - Calories: {item.calories}, Nutrient Value: {item.nutrient_value}")
+
+print(f"Total Calories: {total_calories}")
+
+if total_calories <= calorie_limit:
+    print("Total calories obtained are within the daily calorie limit.")
+else:
+    print("Total calories obtained exceed the daily calorie limit.")
