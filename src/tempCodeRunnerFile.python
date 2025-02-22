@@ -24,6 +24,7 @@ def calorie_optimizer(food_items, calorie_limit):
 foods = [
     FoodItem("Chicken Breast", 165, 25),
     FoodItem("Brown Rice", 215, 5),
+    FoodItem("Rice", 215, 4),
     FoodItem("Broccoli", 55, 3)
 ]
 
